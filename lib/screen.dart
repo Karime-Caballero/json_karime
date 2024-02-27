@@ -32,17 +32,44 @@ class _JsonListViewScreenState extends State<JsonListViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('JSON ListView Example'),
+        title: Text('JSON ListView Example: Karime Alejandra Caballero Campos'),
+        backgroundColor: Color.fromARGB(255, 142, 10, 179), // Color del app bar
       ),
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(items[index].name),
-            subtitle: Text('ID: ${items[index].id}'),
-          );
-        },
-      ),
+      body: items != null
+          ? ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  elevation: 5.0,
+                  margin:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  color: Color.fromARGB(255, 128, 50, 115), // Color del card
+                  child: ListTile(
+                    contentPadding: EdgeInsets.all(10.0),
+                    title: Text(
+                      items[index].name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                        color: Colors.black, // Color del texto del título
+                      ),
+                    ),
+                    subtitle: Text(
+                      'ID: ${items[index].id}',
+                      style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        color: const Color.fromARGB(255, 241, 239,
+                            239), // Color del texto del subtítulo
+                      ),
+                    ),
+                  ),
+                );
+              },
+            )
+          : Center(
+              child:
+                  CircularProgressIndicator(), // Muestra un indicador de carga mientras se cargan los elementos
+            ),
     );
   }
 }
